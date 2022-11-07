@@ -1,6 +1,7 @@
 mod utils;
 
 use wasm_bindgen::prelude::*;
+extern crate js_sys;
 
 // When the `wee_alloc` feature is enabled, use `wee_alloc` as the global
 // allocator.
@@ -89,7 +90,7 @@ impl Universe {
 
         let cells = (0..width * height)
             .map(|i| {
-                if i % 2 == 0 || i % 7 == 0 {
+                if js_sys::Math::random() < 0.1  {
                     Cell::Alive
                 } else {
                     Cell::Dead
